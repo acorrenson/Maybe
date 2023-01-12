@@ -7,7 +7,7 @@ A tiny probabilist functional language
 This repository require a recent version of OCaml to be installed.
 I recommend to install OCaml 4.14 via [opam]().
 
-Once opam is correctly setup, the following instructions should suffices to compile the project:
+Once opam is correctly setup, the following commands should suffice to compile the project:
 ```
 cd path/to/Maybe
 opam install dune opal
