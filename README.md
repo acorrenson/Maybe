@@ -1,6 +1,6 @@
 # Maybe
 
-A tinny probabilist functional language
+A tiny probabilist functional language
 
 ## Build instructions
 
