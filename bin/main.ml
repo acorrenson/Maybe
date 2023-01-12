@@ -18,10 +18,10 @@ let () =
   | [file] ->
     let prog = Parser.parse_file file in
     if !do_infer then
-      Lang.infer prog
-      |> Printf.printf "\nsupport:\n%a\n" Lang.print_support
+      Inference.infer prog
+      |> Printf.printf "\ndistribution:\n%a\n" Distribution.print_distribution
     else
-      Lang.exec (fun _ -> 0) prog
+      Interpreter.exec (fun _ -> 0) prog
       |> Printf.printf "\nresult: %d\n"
   | _ ->
     Printf.eprintf "\t%s\n" usage_msg;
