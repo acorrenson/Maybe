@@ -54,7 +54,7 @@ let x = <expr> in <expr>
 
 ### Sampling
 
-Binomial distribution (`1` with probability `p` and `0` with probability `1 - p`).
+Bernouilli variable (`1` with probability `p` and `0` with probability `1 - p`).
 ```
 B(p)
 ```
