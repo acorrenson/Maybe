@@ -63,6 +63,12 @@ and parse_sample input =
       let* l = sep_by1 (spaces >> integer') (token ",") in
       let* _ = token "]" in
       return (Sample (Uniform l))
+    end <|>
+    begin
+      let* _ = token "EU[" in
+      let* l = sep_by1 (spaces >> parse_expr) (token ",") in
+      let* _ = token "]" in
+      return (Sample (EUniform l))
     end
   end input
 

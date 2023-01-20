@@ -1,0 +1,4 @@
+let x = U[1, 2, 3, 4] in
+let y = U[5, 6] in
+let z = EU[x, y] in
+z

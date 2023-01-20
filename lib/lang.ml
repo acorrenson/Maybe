@@ -2,9 +2,10 @@
 type distribution =
   | Bernouilli of float
   | Uniform of int list
+  | EUniform of expr list
 
 (** Expressions *)
-type expr =
+and expr =
   | Let of string * expr * expr
   | If of expr * expr * expr
   | Add of expr * expr
@@ -26,18 +27,24 @@ let rec print_expr f = function
   | Sample (Bernouilli p) ->
     Printf.fprintf f "B(%f)" p
   | Sample (Uniform l) ->
-    Printf.fprintf f "U[%a]" print_list l
+    Printf.fprintf f "U[%a]" print_int_list l
+  | Sample (EUniform l) ->
+    Printf.fprintf f "U[%a]" print_expr_list l
   | Var x -> Printf.fprintf f "%s" x
   | Cst c -> Printf.fprintf f "%d" c
 
 (** Pretty printer for lists of integers *)
-and print_list f l =
+and print_int_list f l =
   match l with
   | [] -> ()
   | [x] -> Printf.fprintf f "%d" x
-  | x::xs -> Printf.fprintf f "%d %a" x print_list xs
+  | x::xs -> Printf.fprintf f "%d %a" x print_int_list xs
 
-
+and print_expr_list f l =
+  match l with
+  | [] -> ()
+  | [x] -> Printf.fprintf f "%a" print_expr x
+  | x::xs -> Printf.fprintf f "%a %a" print_expr x print_expr_list xs
 
 (** Naive bottom-up expression simplifier *)
 let rec simpl e =
