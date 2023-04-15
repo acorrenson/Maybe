@@ -15,7 +15,7 @@ dune build
 ```
 ## Usage
 
-To execute a given probabilistic program written in a file `<file>.maybe` :
+To execute a given probabilist program written in a file `<file>.maybe` :
 
 ```
 dune exec -- maybe <file>.maybe
