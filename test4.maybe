@@ -1,0 +1,3 @@
+let x = EU[1, 2, 3, 4] in
+let y = EU[1, 2, 3, 4] in
+x + y

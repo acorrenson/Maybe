@@ -41,7 +41,6 @@ let extend_domain (dom : S.t) (d : distribution) : distribution =
 
 let join_all (ld : distribution list) =
   let dom = List.(fold_left S.union S.empty (map domain ld)) in
-  Printf.printf "dom: %a\n" print_expr_list (dom |> S.to_seq |> List.of_seq);
   List.map (extend_domain dom) ld
 
 let rec mapn (f : 'a list -> 'b) (ll : 'a list list) : 'b list =
@@ -87,7 +86,6 @@ and sample (env : distribution store) (d : Lang.distribution) : distribution =
     let ld = join_all (List.map (infer_aux env) l) in
     let p = 1. /. (float_of_int (List.length ld)) in
     mapn (fun l ->
-      Printf.printf "\n%a\n" print_distribution l;
       let v = List.hd l |> fst in
       assert (List.for_all ((=) v) (List.map fst l));
       (v, p *. List.fold_left (+.) 0. (List.map snd l))
